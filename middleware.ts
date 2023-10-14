@@ -18,6 +18,6 @@ export async function middleware(req: NextRequest) {
   return res;
 }
 
-export const config = {
-  matcher: ["/", "/login"],
-};
+// export const config = {
+//   matcher: ["/", "/login"],
+// };
