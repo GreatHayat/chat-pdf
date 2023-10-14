@@ -16,9 +16,10 @@ export default function Login() {
       <form action="/auth/login" method="POST">
         <Card>
           <CardHeader>
-            <CardTitle>Login/Register</CardTitle>
+            <CardTitle>Login With Magic Link</CardTitle>
             <CardDescription>
-              Login to your account or register a new one to get started.
+              Please enter your valid email address to log in using a magic
+              link.
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-3">
@@ -35,26 +36,12 @@ export default function Login() {
           </CardContent>
           <CardFooter>
             <p className="text-sm">
-              By signing up, you agree to our Terms of Service and Privacy
+              By signing in, you agree to our Terms of Service and Privacy
               Policy.
             </p>
           </CardFooter>
         </Card>
       </form>
-      {/* <input
-        name="email"
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-      />
-      <input
-        type="password"
-        name="password"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-      />
-      <button onClick={handleSignUp}>Sign up</button>
-      <button onClick={handleSignIn}>Sign in</button>
-      <button onClick={handleSignOut}>Sign out</button> */}
     </div>
   );
 }
