@@ -23,7 +23,7 @@ const Navbar = async () => {
   };
   return (
     <>
-      <div className="flex w-full items-center justify-between px-4 lg:px-24 py-4 border-b">
+      <div className="flex w-full items-center justify-between px-4 lg:px-40 py-4 border-b">
         <Link href="/">
           <h1 className="scroll-m-20 text-xl font-extrabold tracking-tight lg:text-2xl">
             Chat PDF

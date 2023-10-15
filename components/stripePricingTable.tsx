@@ -1,5 +1,6 @@
 "use client";
 
+import { User } from "@supabase/supabase-js";
 import React, { useEffect } from "react";
 
 interface StripePricingTableProps
@@ -19,7 +20,11 @@ declare global {
   }
 }
 
-export default function StripePricingTable() {
+type Props = {
+  user: User;
+};
+
+export default function StripePricingTable({ user }: Props) {
   useEffect(() => {
     const script = document.createElement("script");
     script.src = process.env.NEXT_PUBLIC_STRIPE_SRC_CDN as string;
@@ -39,8 +44,8 @@ export default function StripePricingTable() {
         }
         publishable-key={process.env.NEXT_PUBLIC_STRIPE_PUBLISH_KEY as string}
         // Will use the following later to caputer the user information to use in webhook
-        // client-reference-id={}
-        // customer-email={}
+        client-reference-id={user.id}
+        customer-email={user.email}
       ></stripe-pricing-table>
     </div>
   );
