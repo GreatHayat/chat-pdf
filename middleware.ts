@@ -12,12 +12,12 @@ export async function middleware(req: NextRequest) {
   if (requestUrl.pathname === "/login" && data.session !== null) {
     return NextResponse.redirect(requestUrl.origin);
   }
-  if (data.session === null) {
-    return NextResponse.redirect(`${requestUrl.origin}/login`);
-  }
+  //   if (data.session === null) {
+  //     return NextResponse.redirect(`${requestUrl.origin}/login`);
+  //   }
   return res;
 }
 
-export const config = {
-  matcher: ["/login", "/pricing"],
-};
+// export const config = {
+//   matcher: ["/login", "/pricing"],
+// };
