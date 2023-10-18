@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
       webhookSignature,
       stripeEndpointSecret!
     );
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json({ error: true, message: error?.message });
   }
 
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     const subscription = await stripe.subscriptions.retrieve(
       checkoutSession.subscription as string
     );
-    console.log("SUBSC", subscription);
+
     const payload = {
       user_id: checkoutSession.client_reference_id,
       customer_id: checkoutSession.customer,

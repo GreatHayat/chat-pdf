@@ -12,7 +12,7 @@ import LoginMessage from "./message";
 
 export default function Login() {
   return (
-    <div className="flex-1 flex flex-col w-full sm:max-w-md justify-center gap-2">
+    <div className="w-full mx-auto sm:max-w-md justify-center gap-2">
       <form action="/auth/login" method="POST">
         <Card>
           <CardHeader>
