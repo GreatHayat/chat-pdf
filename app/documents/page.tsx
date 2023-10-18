@@ -27,7 +27,7 @@ export default function Documents() {
 
     try {
       setIsLoading(true);
-      const response = await axios.post("/api/uploads", formData, {
+      const response = await axios.post("/api/documents", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
