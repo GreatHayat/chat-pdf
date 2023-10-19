@@ -54,7 +54,7 @@ export default function Chat() {
 
   return (
     <>
-      <div className="overflow-y-auto">
+      <div className="flex-1 overflow-y-auto">
         <ChatMessage
           message="This is a message"
           icon={<User2 className="w-6 h-6 text-white" />}
@@ -70,9 +70,11 @@ export default function Chat() {
         />
 
         <ChatMessage
-          message="This is a message"
+          message={`This updated HTML and CSS will display avatars next to the message content in a flex row layout. The avatar class is used to style the avatar, and the content class is used to style the message content. You can adjust the width, height, and other styling properties to fit your design.
+
+          Make sure you replace "avatar.png" in the img element with the actual URL or path to your user's avatar image.`}
           icon={<User2 className="w-6 h-6 text-white" />}
-          type="user"
+          type="bot"
         />
 
         <ChatMessage
@@ -82,13 +84,6 @@ export default function Chat() {
           icon={<User2 className="w-6 h-6 text-white" />}
           type="bot"
         />
-
-        <ChatMessage
-          message="This is a message"
-          icon={<User2 className="w-6 h-6 text-white" />}
-          type="user"
-        />
-
         <ChatMessage
           message={`This updated HTML and CSS will display avatars next to the message content in a flex row layout. The avatar class is used to style the avatar, and the content class is used to style the message content. You can adjust the width, height, and other styling properties to fit your design.
 
@@ -96,13 +91,6 @@ export default function Chat() {
           icon={<User2 className="w-6 h-6 text-white" />}
           type="bot"
         />
-
-        <ChatMessage
-          message="This is a message"
-          icon={<User2 className="w-6 h-6 text-white" />}
-          type="user"
-        />
-
         <ChatMessage
           message={`This updated HTML and CSS will display avatars next to the message content in a flex row layout. The avatar class is used to style the avatar, and the content class is used to style the message content. You can adjust the width, height, and other styling properties to fit your design.
 
@@ -112,9 +100,36 @@ export default function Chat() {
         />
       </div>
 
-      <div className="block w-full max-w-[700px] mx-auto mb-4">
+      <div className="bg-white p-4 border-t flex items-center">
+        <input
+          type="text"
+          className="w-full px-2 py-1 border rounded-md"
+          placeholder="Type your message..."
+        />
+        <button className="ml-2 bg-blue-500 text-white px-3 py-1 rounded-md">
+          Send
+        </button>
+      </div>
+
+      {/*<div className="overflow-y-auto">
+        {/* <ChatMessage
+          message="This is a message"
+          icon={<User2 className="w-6 h-6 text-white" />}
+          type="user"
+        />
+
+        <ChatMessage
+          message={`This updated HTML and CSS will display avatars next to the message content in a flex row layout. The avatar class is used to style the avatar, and the content class is used to style the message content. You can adjust the width, height, and other styling properties to fit your design.
+
+          Make sure you replace "avatar.png" in the img element with the actual URL or path to your user's avatar image.`}
+          icon={<User2 className="w-6 h-6 text-white" />}
+          type="bot"
+        /> 
+      </div>*/}
+
+      {/* <div className="block w-full max-w-[700px] mx-auto mb-4">
         <div className="border shadow p-4 rounded-md">OK</div>
-      </div>
+      </div> */}
       {/* <div style={{ width: "50%" }}>
           <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
             <div style={{ height: "100vh" }}>

@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex flex-col h-screen">
           <Navbar />
-          <main className="flex flex-col flex-1 bg-muted/50">{children}</main>
+          {children}
         </div>
         <Toaster />
       </body>
