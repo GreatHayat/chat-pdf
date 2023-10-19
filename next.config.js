@@ -9,6 +9,7 @@ const nextConfig = {
     serverComponentsExternalPackages: ["sharp", "onnxruntime-node"],
   },
 
+  images: { domains: ["picsum.photos"] },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.node/,

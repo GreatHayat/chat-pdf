@@ -18,9 +18,6 @@ const Navbar = async () => {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-  };
   return (
     <>
       <div className="flex w-full items-center justify-between px-4 lg:px-40 py-4 border-b">

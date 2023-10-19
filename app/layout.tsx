@@ -19,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        <main className="py-16 px-4 lg:px-40">{children}</main>
+        <div className="flex flex-col h-screen">
+          <Navbar />
+          <main className="flex flex-col flex-1 bg-muted/50">{children}</main>
+        </div>
         <Toaster />
       </body>
     </html>

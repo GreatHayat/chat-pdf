@@ -52,7 +52,7 @@ export default function Documents() {
   };
 
   return (
-    <>
+    <div className="px-4 lg:px-40 py-12">
       <div>
         <h1 className="text-xl font-medium">Documents</h1>
       </div>
@@ -77,6 +77,6 @@ export default function Documents() {
           setIsPrivateCheckbox={setIsPrivateCheckbox}
         />
       </div>
-    </>
+    </div>
   );
 }
