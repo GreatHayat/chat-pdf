@@ -10,13 +10,13 @@ const nextConfig = {
   },
 
   images: { domains: ["picsum.photos"] },
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.node/,
-      use: "raw-loader",
-    });
-    return config;
-  },
+  // webpack: (config) => {
+  //   config.module.rules.push({
+  //     test: /\.node/,
+  //     use: "raw-loader",
+  //   });
+  //   return config;
+  // },
 };
 
 module.exports = nextConfig;
