@@ -6,6 +6,7 @@ const nextConfig = {
 
   // Indicate that these packages should not be bundled by webpack
   experimental: {
+    serverActions: true,
     serverComponentsExternalPackages: ["sharp", "onnxruntime-node"],
   },
 

@@ -6,12 +6,14 @@ import { Button } from "./ui/button";
 
 type Props = {
   accept: string;
+  name: string;
   file: File | null;
-  setFile: any;
+  setFile: Function;
 };
 
-export default function FileInput({ accept, file, setFile }: Props) {
+export default function FileInput({ accept, name, file, setFile }: Props) {
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     const files = e.target.files as FileList;
     setFile(files[0]);
   };
@@ -32,6 +34,7 @@ export default function FileInput({ accept, file, setFile }: Props) {
             </Button>
           </div>
         )}
+
         {!file && (
           <label
             htmlFor="dropzone-file"
@@ -49,12 +52,12 @@ export default function FileInput({ accept, file, setFile }: Props) {
             </div>
 
             <input
-              id="dropzone-file"
               type="file"
-              className="hidden"
+              name={name}
               accept={accept}
-              onChange={(e) => handleFile(e)}
-              disabled={file !== null && true}
+              onChange={handleFile}
+              id="dropzone-file"
+              className="hidden"
             />
           </label>
         )}

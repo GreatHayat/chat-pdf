@@ -9,14 +9,15 @@
 //   toolbarPlugin,
 //   ToolbarSlot,
 // } from "@react-pdf-viewer/toolbar";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useChat } from "ai/react";
 import { User2 } from "lucide-react";
 import ChatMessage from "./components/message";
+import { testMessage } from "@/test";
+import { Button } from "@/components/ui/button";
 
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
-  console.log("MESSAGES", messages);
   // const renderToolbar = (Toolbar: (props: ToolbarProps) => ReactElement) => (
   //   <Toolbar>
   //     {(slots: ToolbarSlot) => {
@@ -56,6 +57,14 @@ export default function Chat() {
 
   // const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
+  const sendMessage = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!input) {
+      return alert("You can't send a blank message");
+    }
+    handleSubmit(e);
+  };
   return (
     <>
       <div className="flex-1 overflow-y-auto">
@@ -70,44 +79,37 @@ export default function Chat() {
           </Worker>
         </div> */}
 
-        {messages.map((m) =>
+        {messages.map((message) =>
           // <div key={m.id}>
           //   {m.role === 'user' ? 'User: ' : 'AI: '}
           //   {m.content}
           // </div>
-          m.role === "user" ? (
-            <ChatMessage
-              key={m.id}
-              message={m.content}
-              icon={<User2 className="w-6 h-6 text-white" />}
-              type="user"
-            />
+          message.role === "user" ? (
+            <ChatMessage key={message.id} message={message} />
           ) : (
-            <ChatMessage
-              key={m.id}
-              message={m.content}
-              icon={<User2 className="w-6 h-6 text-white" />}
-              type="bot"
-            />
+            <ChatMessage key={message.id} message={message} />
           )
         )}
+        {/* <ChatMessage message={testMessage} /> */}
       </div>
 
-      <div className="bg-white p-4 border-t flex items-center">
-        <input
-          type="text"
-          className="w-full px-2 py-1 border rounded-md"
-          placeholder="Type your message..."
-          value={input}
-          onChange={handleInputChange}
-        />
-        <button
-          className="ml-2 bg-blue-500 text-white px-3 py-1 rounded-md"
-          onClick={handleSubmit}
-        >
-          Send
-        </button>
-      </div>
+      <form onSubmit={sendMessage}>
+        <div className="bg-white p-4 border-t flex items-center">
+          <input
+            type="text"
+            className="w-full px-2 py-2 border rounded-md"
+            placeholder="Type your message..."
+            value={input}
+            onChange={handleInputChange}
+          />
+          <Button
+            className="ml-2 text-white px-3 py-2 rounded-md"
+            type="submit"
+          >
+            Send
+          </Button>
+        </div>
+      </form>
 
       {/*<div className="overflow-y-auto">
         {/* <ChatMessage

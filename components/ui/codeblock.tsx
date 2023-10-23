@@ -5,7 +5,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { coldarkDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Button } from "@/components/ui/button";
 import { useCopyToClipboard } from "@/lib/hooks/useCopyToClipBoard";
-import { DownloadCloud } from "lucide-react";
+import { Copy, CopyCheck, DownloadCloud } from "lucide-react";
 
 interface Props {
   language: string;
@@ -99,7 +99,7 @@ const CodeBlock: FC<Props> = memo(({ language, value }) => {
             onClick={downloadAsFile}
             size="icon"
           >
-            <DownloadCloud />
+            <DownloadCloud size={16} />
             <span className="sr-only">Download</span>
           </Button>
           <Button
@@ -108,7 +108,7 @@ const CodeBlock: FC<Props> = memo(({ language, value }) => {
             className="text-xs hover:bg-zinc-800 focus-visible:ring-1 focus-visible:ring-slate-700 focus-visible:ring-offset-0"
             onClick={onCopy}
           >
-            {isCopied ? "Copied" : "Copy"}
+            {isCopied ? <CopyCheck size={16} /> : <Copy size={16} />}
             <span className="sr-only">Copy code</span>
           </Button>
         </div>

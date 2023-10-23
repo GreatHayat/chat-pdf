@@ -1,53 +1,24 @@
 import { writeFile, unlink } from "fs/promises";
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { HuggingFaceTransformersEmbeddings } from "langchain/embeddings/hf_transformers";
 import { SupabaseVectorStore } from "langchain/vectorstores/supabase";
 import { supabaseClient } from "@/lib/supabase";
-import { revalidatePath } from "next/cache";
 
-export async function GET(request: NextRequest) {
-  // const supabase = createRouteHandlerClient({ cookies });
-  // const {
-  //   data: { user },
-  // } = await supabase.auth.getUser();
-
-  // if (!user) {
-  //   return NextResponse.json(
-  //     {
-  //       error: true,
-  //       message: "You are not authorized to access this endpoint!",
-  //     },
-  //     { status: 401, statusText: "Unauthorized!" }
-  //   );
-  // }
-
-  const files = await supabaseClient.from("files").select();
-  return NextResponse.json({ success: true, files });
-}
-
-export async function POST(request: NextRequest) {
-  const data = await request.formData();
-  const file: File | null = data.get("file") as unknown as File;
-  const isPrivate: boolean | string = data.get("isPrivate") as string;
+export const uploadDocument = async (formData: FormData) => {
+  const file: File | null = formData.get("file") as unknown as File;
+  const isPrivate: boolean | string = formData.get("isPrivate") as string;
 
   if (!file) {
-    return NextResponse.json(
-      { error: true, message: "File is required." },
-      { status: 400, statusText: "File Not Provided" }
-    );
+    return { error: true, message: "File is required." };
   }
 
   if (file.type !== "application/pdf") {
-    return NextResponse.json(
-      {
-        error: true,
-        message: "Only PDF files are allowed to upload.",
-      },
-      { status: 400 }
-    );
+    return {
+      error: true,
+      message: "Only PDF files are allowed to upload.",
+    };
   }
 
   const bytes = await file.arrayBuffer();
@@ -75,10 +46,7 @@ export async function POST(request: NextRequest) {
 
   if (error) {
     await unlink(path);
-    return NextResponse.json(
-      { error: true, message: error.message },
-      { status: 400 }
-    );
+    return { error: true, message: error.message };
   }
 
   const loader = new PDFLoader(path);
@@ -102,11 +70,6 @@ export async function POST(request: NextRequest) {
 
   // Delete file from path after reading
   await unlink(path);
-  // if (requestedPath) {
-  //   requestedPath(requestedPath);
-  // }
-  return NextResponse.json({
-    success: true,
-    message: "File Uploaded Successfully",
-  });
-}
+
+  return { success: true, message: "File Uploaded Successfully!" };
+};
