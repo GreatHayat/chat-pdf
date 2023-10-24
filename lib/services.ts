@@ -73,3 +73,9 @@ export const uploadDocument = async (formData: FormData) => {
 
   return { success: true, message: "File Uploaded Successfully!" };
 };
+
+export const deleteDocument = async (id: number) => {
+  const supabase = createRouteHandlerClient({ cookies });
+  const result = await supabase.from("files").delete().eq("id", id);
+  return result;
+};

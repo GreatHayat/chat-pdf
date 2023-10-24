@@ -63,7 +63,7 @@ export default function UploadDocModal({ handleSubmit }: Props) {
     >
       <DialogTrigger asChild>
         <Button className="py-2 w-full lg:w-auto" type="button">
-          <Upload className="mr-2 h-4 w-4" /> Upload
+          <Upload className="mr-2 h-4 w-4" /> Upload Document
         </Button>
       </DialogTrigger>
       <DialogContent className="w-full">
@@ -79,7 +79,7 @@ export default function UploadDocModal({ handleSubmit }: Props) {
               accept="application/pdf"
             />
 
-            <div className="items-top flex space-x-2 mt-4">
+            <div className="items-top flex space-x-2 mt-8">
               <Checkbox
                 name="isPrivate"
                 checked={isPrivateCheckbox}
@@ -109,7 +109,7 @@ export default function UploadDocModal({ handleSubmit }: Props) {
             </Alert>
           )}
 
-          <DialogFooter className="flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:justify-center">
+          <DialogFooter className="flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:justify-center mt-8">
             <Button
               className="w-full"
               type="submit"

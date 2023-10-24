@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Alert } from "@/components/ui/alert";
-import { uploadDocument } from "@/lib/services";
+import { deleteDocument, uploadDocument } from "@/lib/services";
 import UploadDocModal from "./uploadDocModal";
 import DocumentListing from "./documentListing";
 
@@ -28,6 +28,15 @@ export default async function Documents() {
     return results;
   };
 
+  async function handleDelete(id: number) {
+    "use server";
+
+    const result = await deleteDocument(id);
+    revalidatePath("/dashboard/documents");
+    console.log("RESULT", result);
+    return result;
+  }
+
   return (
     <div className="px-4 lg:px-40 py-12">
       <div className="mb-4">
@@ -48,7 +57,7 @@ export default async function Documents() {
 
       <div className="mt-4">
         {error && <Alert variant="destructive">{error.message}</Alert>}
-        <DocumentListing files={files} />
+        <DocumentListing files={files} handleDelete={handleDelete} />
       </div>
     </div>
   );
